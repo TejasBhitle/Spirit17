@@ -43,8 +43,6 @@
 
     <!-- Email Ids-->
     <string name="send_email">Send an email</string>
-    <string name="email_tejas"><u>bhitletejas@gmail.com</u></string>
-    <string name="email_shubham"><u>shubh12197@gmail.com</u></string>
 
     <string name="secretary_email"><u>technicalheadspit@gmail.com</u></string>
     <string name="core_email"><u>matrixthefest@gmail.com</u></string>
@@ -56,14 +54,6 @@
     <string name="decor_email"><u>decorspit17@gmail.com</u></string>
     <string name="admin_email"><u>aspit333@gmail.com</u></string>
     <string name="security_email"><u>secspit@gmail.com</u></string>
-
-    <!--Google+-->
-    <string name="googleplus_tejas">https://tejasbhitle.github.io</string>
-    <string name="googleplus_shubham">https://plus.google.com/105339466507922161056</string>
-
-    <!--LinkedIn-->
-    <string name="linkedin_tejas">https://www.linkedin.com/in/tejas-bhitle-ab6597126</string>
-    <string name="linkedin_shubham">https://www.linkedin.com/profile/view?id=116787827</string>
 
     <string name="title_activity_event_details">EventDetails</string>
 

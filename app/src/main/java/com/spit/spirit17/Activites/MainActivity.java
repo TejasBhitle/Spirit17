@@ -25,7 +25,6 @@ import android.widget.Toast;
 
 import com.spit.spirit17.Fragments.CommitteeFragment;
 import com.spit.spirit17.Fragments.ContactUsFragment;
-import com.spit.spirit17.Fragments.DevelopersFragment;
 import com.spit.spirit17.Fragments.FavoritesFragment;
 import com.spit.spirit17.Fragments.MainFragment;
 import com.spit.spirit17.HelperClasses.CustomPagerAdapter;
@@ -216,19 +215,6 @@ public class MainActivity extends AppCompatActivity {
                                             fragmentTransaction.addToBackStack(null);
                                             fragmentTransaction.commit();
                                             collapsingToolbarLayout.setTitle("Committee");
-                                        }
-                                    }, DRAWER_DELAY);
-                                    break;
-                                case R.id.developers_menuItem:
-                                    new Handler().postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            getSupportFragmentManager().popBackStackImmediate();
-                                            fragmentTransaction.replace(R.id.fragment_container, new DevelopersFragment());
-                                            appBarLayout.setExpanded(false, true);
-                                            fragmentTransaction.addToBackStack(null);
-                                            fragmentTransaction.commit();
-                                            collapsingToolbarLayout.setTitle("Developers");
                                         }
                                     }, DRAWER_DELAY);
                                     break;
