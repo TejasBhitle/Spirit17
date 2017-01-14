@@ -4,8 +4,7 @@
     <string name="playstore_link">https://play.google.com/store/apps/details?id=com.spit.spirit17</string>
     <string name="github_link">https://github.com/TejasBhitle/Spirit17</string>
 
-    <string name="about_fest">Get Ready. Spirit is here. (sample welcome text; Edit Later)</string>
-
+    <string name="about_fest">Get Ready. Spirit is here.( This is a sample welcome text, edit later )</string>
 
     <string name="sponsors">Sponsors</string>
     <string name="share">Share app</string>
@@ -108,4 +107,5 @@
     <string name="app_licence">Licensed under the MIT license.</string>
     <string name="app_copyright">&#169; 2016 Sardar Patel Institute of Technology.</string>
     <string name="aboutapp">About</string>
+    <string name="home">Home</string>
 </resources>

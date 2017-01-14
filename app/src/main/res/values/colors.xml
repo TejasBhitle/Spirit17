@@ -3,8 +3,8 @@
     <color name="colorPrimary">#9c26b0</color>
     <color name="colorPrimaryDark">#791da2</color>
     <color name="colorAccent">#e91b63</color>
+    <color name="background">#ffffff</color>
 
-    <color name="background">#fafafa</color>
     <color name="card_background">#ffffff</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#757575</color>

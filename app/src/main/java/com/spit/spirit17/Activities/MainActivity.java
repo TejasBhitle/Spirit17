@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         if(savedInstanceState == null){
             fm = getSupportFragmentManager();
             FragmentTransaction transaction = fm.beginTransaction();
-            MainFragment mainFragment = new MainFragment();
+            MainFragment mainFragment = MainFragment.newInstance();
             transaction.replace(R.id.fragment_container,mainFragment).commit();
             //EventsTabFragment eventsTabFragment = EventsTabFragment.newInstance("Inter");
             //transaction.replace(R.id.fragment_container, eventsTabFragment).commit();
@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
                                         public void run() {
                                             boolean isFragmentInStack = fm.popBackStackImmediate(backStageName, 0);
                                             if (!isFragmentInStack) {
-                                                MainFragment fragment = new MainFragment();
+                                                MainFragment fragment = MainFragment.newInstance();
                                                 fragmentTransaction.replace(R.id.fragment_container, fragment);
                                                 backStageName = fragment.getClass().getName();
                                                 fragmentTransaction.addToBackStack(backStageName).commit();

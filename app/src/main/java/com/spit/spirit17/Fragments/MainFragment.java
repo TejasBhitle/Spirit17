@@ -15,7 +15,11 @@ import com.spit.spirit17.R;
 
 public class MainFragment extends Fragment {
 
-    public MainFragment(){}
+    public MainFragment (){}
+
+    public static MainFragment newInstance(){
+        return new MainFragment();
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
