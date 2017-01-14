@@ -1,4 +1,4 @@
-package com.spit.spirit17.Activites;
+package com.spit.spirit17.Activities;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -72,7 +72,6 @@ public class EventDetails extends AppCompatActivity{
         getSupportActionBar().setTitle("");
 
         final AppCompatTextView textViews[] = {
-                (AppCompatTextView) findViewById(R.id.tv_event_description),
                 (AppCompatTextView) findViewById(R.id.tv_event_venue_time),
                 (AppCompatTextView) findViewById(R.id.tv_event_registration),
                 (AppCompatTextView) findViewById(R.id.tv_event_prizes),
@@ -95,7 +94,6 @@ public class EventDetails extends AppCompatActivity{
         else
             this.setTitle("Some event");
 
-        setDescription(getIntent().getStringExtra("description"));
         setVenueAndTime(getIntent().getStringExtra("venue"), getIntent().getStringExtra("time"));
         setRegistration(getIntent().getStringExtra("registration"));
         setPrizes(getIntent().getStringExtra("prizes"));
@@ -106,7 +104,7 @@ public class EventDetails extends AppCompatActivity{
 
         mainImageView = (ImageView) findViewById(R.id.main_imageView);
         assert mainImageView != null;
-        //mainImageView.setImageResource(getIntent().getIntExtra("image", R.drawable.event_vsm));
+        mainImageView.setImageResource(getIntent().getIntExtra("image", R.drawable.viewpager_1));
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         assert fab != null;
@@ -149,7 +147,7 @@ public class EventDetails extends AppCompatActivity{
             public void onClick(View view) {
                 isFavouriteEvent = !isFavouriteEvent;
                 ContentResolver contentResolver = getContentResolver();
-                Uri uri = Uri.parse("content://spit.matrix2017.provider");
+                Uri uri = Uri.parse("content://com.spit.spirit17.provider");
                 String selection = "name = ?";
                 String[] selectionArgs = {getIntent().getStringExtra("name")};
                 ContentValues cv = new ContentValues();
@@ -178,7 +176,6 @@ public class EventDetails extends AppCompatActivity{
                 isFirstLaunch = false;
             }
 
-            slide.addTarget(R.id.description_card);
             slide.addTarget(R.id.venue_time_card);
             slide.addTarget(R.id.registration_card);
             slide.addTarget(R.id.prizes_card);
@@ -258,12 +255,6 @@ public class EventDetails extends AppCompatActivity{
         collapsingToolbarLayout.setExpandedTitleColor(Color.TRANSPARENT);
         collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
 
-    }
-
-    private void setDescription(String description) {
-        AppCompatTextView descriptionTextView = (AppCompatTextView) findViewById(R.id.description_textView);
-        assert descriptionTextView != null;
-        descriptionTextView.setText(description);
     }
 
     private void setVenueAndTime(String venue, String time) {
@@ -405,7 +396,7 @@ public class EventDetails extends AppCompatActivity{
                 .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.getTimeInMillis())
                 .putExtra(CalendarContract.Events._ID, mEventID)
                 .putExtra(CalendarContract.Events.TITLE, event_name)
-                .putExtra(CalendarContract.Events.DESCRIPTION, "Event at Matrix 17")
+                .putExtra(CalendarContract.Events.DESCRIPTION, "Event at Spirit 17")
                 .putExtra(CalendarContract.Events.EVENT_LOCATION, getIntent().getStringExtra("venue")+", S.P.I.T.")
                 .putExtra(CalendarContract.Events.AVAILABILITY, CalendarContract.Events.AVAILABILITY_BUSY);
 

@@ -1,4 +1,4 @@
-package com.spit.spirit17.Activites;
+package com.spit.spirit17.Activities;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -23,12 +23,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.spit.spirit17.Fragments.CommitteeFragment;
-import com.spit.spirit17.Fragments.ContactUsFragment;
-import com.spit.spirit17.Fragments.FavoritesFragment;
-import com.spit.spirit17.Fragments.MainFragment;
-import com.spit.spirit17.HelperClasses.CustomPagerAdapter;
-import com.spit.spirit17.HelperClasses.CustomViewPager;
+import com.spit.spirit17.Fragments.*;
+import com.spit.spirit17.HelperClasses.*;
 import com.spit.spirit17.R;
 
 import me.relex.circleindicator.CircleIndicator;
@@ -39,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private AppBarLayout appBarLayout;
-    private ActionBarDrawerToggle actionBarDrawerToggle;
+    ActionBarDrawerToggle actionBarDrawerToggle;
     CollapsingToolbarLayout collapsingToolbarLayout;
 
 
@@ -134,8 +130,10 @@ public class MainActivity extends AppCompatActivity {
         if(savedInstanceState == null){
             fm = getSupportFragmentManager();
             FragmentTransaction transaction = fm.beginTransaction();
-            MainFragment mainFragment = MainFragment.newInstance();
+            MainFragment mainFragment = new MainFragment();
             transaction.replace(R.id.fragment_container,mainFragment).commit();
+            //EventsTabFragment eventsTabFragment = EventsTabFragment.newInstance("Inter");
+            //transaction.replace(R.id.fragment_container, eventsTabFragment).commit();
         }
 
         setupDrawerLayout();
@@ -157,19 +155,45 @@ public class MainActivity extends AppCompatActivity {
                             final FragmentTransaction fragmentTransaction = fm.beginTransaction();
                             fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
                             switch (item.getItemId()) {
-                                case R.id.homepage_menuItem:
+                                case R.id.main_menuItem:
                                     new Handler().postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
                                             boolean isFragmentInStack = fm.popBackStackImmediate(backStageName, 0);
                                             if (!isFragmentInStack) {
-                                                MainFragment fragment = MainFragment.newInstance();
+                                                MainFragment fragment = new MainFragment();
                                                 fragmentTransaction.replace(R.id.fragment_container, fragment);
                                                 backStageName = fragment.getClass().getName();
                                                 fragmentTransaction.addToBackStack(backStageName).commit();
                                             }
                                             appBarLayout.setExpanded(true, true);
-                                            collapsingToolbarLayout.setTitle("Matrix 17");
+                                            collapsingToolbarLayout.setTitle(getString(R.string.app_name));
+                                        }
+                                    }, DRAWER_DELAY);
+                                    break;
+                                case R.id.inter_menuItem:
+                                    new Handler().postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            getSupportFragmentManager().popBackStackImmediate();
+                                            EventsTabFragment fragment = EventsTabFragment.newInstance("Inter");
+                                            fragmentTransaction.replace(R.id.fragment_container, fragment);
+                                            fragmentTransaction.addToBackStack(null).commit();
+                                            appBarLayout.setExpanded(false, true);
+                                            collapsingToolbarLayout.setTitle("Inter Events");
+                                        }
+                                    }, DRAWER_DELAY);
+                                    break;
+                                case R.id.intra_menuItem:
+                                    new Handler().postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            getSupportFragmentManager().popBackStackImmediate();
+                                            EventsTabFragment fragment = EventsTabFragment.newInstance("Intra");
+                                            fragmentTransaction.replace(R.id.fragment_container, fragment);
+                                            fragmentTransaction.addToBackStack(null).commit();
+                                            appBarLayout.setExpanded(false, true);
+                                            collapsingToolbarLayout.setTitle("Intra Events");
                                         }
                                     }, DRAWER_DELAY);
                                     break;
@@ -218,6 +242,19 @@ public class MainActivity extends AppCompatActivity {
                                         }
                                     }, DRAWER_DELAY);
                                     break;
+                                case R.id.developers_menuItem:
+                                    new Handler().postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            getSupportFragmentManager().popBackStackImmediate();
+                                            fragmentTransaction.replace(R.id.fragment_container, new DevelopersFragment());
+                                            appBarLayout.setExpanded(false, true);
+                                            fragmentTransaction.addToBackStack(null);
+                                            fragmentTransaction.commit();
+                                            collapsingToolbarLayout.setTitle("Developers");
+                                        }
+                                    }, DRAWER_DELAY);
+                                    break;
                                 case R.id.contact_us_menuItem:
                                     new Handler().postDelayed(new Runnable() {
                                         @Override
@@ -238,7 +275,7 @@ public class MainActivity extends AppCompatActivity {
                                         public void run() {
                                             Intent intent = new Intent();
                                             intent.setAction(Intent.ACTION_SEND);
-                                            intent.putExtra(Intent.EXTRA_TEXT, "Check out the official app for Matrix 17!\n\n" + getResources().getString(R.string.playstore_link));
+                                            intent.putExtra(Intent.EXTRA_TEXT, "Check out the official app for Spirit 17!\n\n" + getResources().getString(R.string.playstore_link));
                                             intent.setType("text/plain");
                                             startActivity(Intent.createChooser(intent, getResources().getString(R.string.share_message)));
                                         }
@@ -254,6 +291,18 @@ public class MainActivity extends AppCompatActivity {
                                         }
                                     }, DRAWER_DELAY);
                                     return true;
+                                case R.id.about_menuItem:
+                                    new Handler().postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            getSupportFragmentManager().popBackStackImmediate();
+                                            fragmentTransaction.replace(R.id.fragment_container, new AboutAppFragment());
+                                            appBarLayout.setExpanded(false, true);
+                                            fragmentTransaction.addToBackStack(null);
+                                            fragmentTransaction.commit();
+                                            collapsingToolbarLayout.setTitle(getResources().getString(R.string.aboutapp));
+                                        }
+                                    }, DRAWER_DELAY);
                             }
                         }
                         return true;
@@ -261,12 +310,6 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
     }
-
-   /* @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main,menu);
-        return true;
-    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -306,7 +349,7 @@ public class MainActivity extends AppCompatActivity {
             drawerLayout.closeDrawers();
         else {
             navigationView.getMenu().getItem(0).setChecked(true);
-            collapsingToolbarLayout.setTitle("Spirit 17");
+            collapsingToolbarLayout.setTitle(getString(R.string.app_name));
             appBarLayout.setExpanded(true, true);
 
             super.onBackPressed();
