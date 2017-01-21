@@ -4,11 +4,11 @@
     <string name="playstore_link">https://play.google.com/store/apps/details?id=com.spit.spirit17</string>
     <string name="github_link">https://github.com/TejasBhitle/Spirit17</string>
 
-    <string name="about_fest">Get Ready. Spirit is here.( This is a sample welcome text, edit later )</string>
+    <string name="about_fest">Get Ready. Spirit is here. (This is a sample welcome text, edit later )</string>
 
     <string name="sponsors">Sponsors</string>
     <string name="share">Share app</string>
-    <string name="rate">Rate app</string>
+    <string name="rate">Rate Us</string>
     <string name="share_message">Share link via</string>
 
     <!-- Navigation Drawer-->
@@ -108,4 +108,6 @@
     <string name="app_copyright">&#169; 2016 Sardar Patel Institute of Technology.</string>
     <string name="aboutapp">About</string>
     <string name="home">Home</string>
+    <string name="achievements">Achievements</string>
+    <string name="temp_string">Make Titles in these cards <b>BOLD</b></string>
 </resources>

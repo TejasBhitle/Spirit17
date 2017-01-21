@@ -11,6 +11,12 @@
     <color name="dark_gray">#505050</color>
     <color name="grey">#454545</color>
 
+    <!--card Colors-->
+    <color name="card_blue">#00a6ff</color>
+    <color name="card_yellow">#FFA000</color>
+    <color name="card_green">#08c55a</color>
+
+
     <color name="secretary">#E91E63</color>
     <color name="cp">#FFA000</color>
     <color name="vcp">#009688</color>

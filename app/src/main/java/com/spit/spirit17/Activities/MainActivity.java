@@ -1,16 +1,9 @@
 package com.spit.spirit17.Activities;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Handler;
-import android.os.Looper;
-import android.support.annotation.NonNull;
 import android.support.design.internal.NavigationMenuView;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -20,44 +13,30 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.spit.spirit17.Fragments.*;
-import com.spit.spirit17.HelperClasses.*;
 import com.spit.spirit17.R;
-
-import me.relex.circleindicator.CircleIndicator;
 
 public class MainActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-    private AppBarLayout appBarLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
-    CollapsingToolbarLayout collapsingToolbarLayout;
-
-
-    CustomPagerAdapter mCustomPagerAdapter;
-    CustomViewPager mViewPager;
 
     FragmentManager fm;
     String backStageName;
 
     private static final long DRAWER_DELAY = 250;
-    private static int NUM_PAGES = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        if(Build.VERSION.SDK_INT >= 21) {
-            setContentView(R.layout.activity_main_v21);
-        }
-        else{
-            setContentView(R.layout.activity_main);
-        }
 
         /*int[] images = {
                 R.drawable.event_codatron,
@@ -83,21 +62,6 @@ public class MainActivity extends AppCompatActivity {
         for(int i: images)
             Picasso.with(getApplicationContext()).load(i).resize(400, 400).centerCrop().fetch();*/
 
-        //ViewPager
-        mCustomPagerAdapter = new CustomPagerAdapter(this);
-        mViewPager = (CustomViewPager) findViewById(R.id.viewpager_main);
-        CircleIndicator indicator = (CircleIndicator) findViewById(R.id.indicator);
-        mViewPager.setAdapter(mCustomPagerAdapter);
-        indicator.setViewPager(mViewPager);
-
-        final Handler h = new Handler(Looper.getMainLooper());
-        final Runnable r = new Runnable() {
-            public void run() {
-                mViewPager.setCurrentItem((mViewPager.getCurrentItem()+1)%NUM_PAGES, true);
-                h.postDelayed(this, 5000);
-            }
-        };
-        h.postDelayed(r, 5000);
 
         //instantiation
         toolbar = (Toolbar)findViewById(R.id.toolbar_main);
@@ -105,19 +69,6 @@ public class MainActivity extends AppCompatActivity {
 
         navigationView =(NavigationView)findViewById(R.id.navigation_view);
         drawerLayout =(DrawerLayout)findViewById(R.id.drawer_layout);
-        collapsingToolbarLayout= (CollapsingToolbarLayout)findViewById(R.id.collapsingToolbar_main);
-        collapsingToolbarLayout.setExpandedTitleColor(Color.WHITE);
-        appBarLayout = (AppBarLayout)findViewById(R.id.app_bar_layout);
-
-        CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) appBarLayout.getLayoutParams();
-        AppBarLayout.Behavior appBarLayoutBehaviour = new AppBarLayout.Behavior();
-        appBarLayoutBehaviour.setDragCallback(new AppBarLayout.Behavior.DragCallback() {
-            @Override
-            public boolean canDrag(@NonNull AppBarLayout appBarLayout) {
-                return false;
-            }
-        });
-        layoutParams.setBehavior(appBarLayoutBehaviour);
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,
                 R.string.drawer_open,R.string.drawer_close);
@@ -125,15 +76,12 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
-        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE);
 
         if(savedInstanceState == null){
             fm = getSupportFragmentManager();
             FragmentTransaction transaction = fm.beginTransaction();
             MainFragment mainFragment = MainFragment.newInstance();
             transaction.replace(R.id.fragment_container,mainFragment).commit();
-            //EventsTabFragment eventsTabFragment = EventsTabFragment.newInstance("Inter");
-            //transaction.replace(R.id.fragment_container, eventsTabFragment).commit();
         }
 
         setupDrawerLayout();
@@ -153,7 +101,8 @@ public class MainActivity extends AppCompatActivity {
                         drawerLayout.closeDrawers();
                         if(!item.isChecked()) {
                             final FragmentTransaction fragmentTransaction = fm.beginTransaction();
-                            fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+                            //fragmentTransaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+                            fragmentTransaction.setCustomAnimations(R.anim.fade_in,R.anim.fade_out);
                             switch (item.getItemId()) {
                                 case R.id.main_menuItem:
                                     new Handler().postDelayed(new Runnable() {
@@ -166,8 +115,7 @@ public class MainActivity extends AppCompatActivity {
                                                 backStageName = fragment.getClass().getName();
                                                 fragmentTransaction.addToBackStack(backStageName).commit();
                                             }
-                                            appBarLayout.setExpanded(true, true);
-                                            collapsingToolbarLayout.setTitle(getString(R.string.app_name));
+                                            toolbar.setTitle(getString(R.string.app_name));
                                         }
                                     }, DRAWER_DELAY);
                                     break;
@@ -179,8 +127,7 @@ public class MainActivity extends AppCompatActivity {
                                             EventsTabFragment fragment = EventsTabFragment.newInstance("Inter");
                                             fragmentTransaction.replace(R.id.fragment_container, fragment);
                                             fragmentTransaction.addToBackStack(null).commit();
-                                            appBarLayout.setExpanded(false, true);
-                                            collapsingToolbarLayout.setTitle("Inter Events");
+                                            toolbar.setTitle("Inter Events");
                                         }
                                     }, DRAWER_DELAY);
                                     break;
@@ -192,8 +139,7 @@ public class MainActivity extends AppCompatActivity {
                                             EventsTabFragment fragment = EventsTabFragment.newInstance("Intra");
                                             fragmentTransaction.replace(R.id.fragment_container, fragment);
                                             fragmentTransaction.addToBackStack(null).commit();
-                                            appBarLayout.setExpanded(false, true);
-                                            collapsingToolbarLayout.setTitle("Intra Events");
+                                            toolbar.setTitle("Intra Events");
                                         }
                                     }, DRAWER_DELAY);
                                     break;
@@ -203,9 +149,8 @@ public class MainActivity extends AppCompatActivity {
                                         public void run() {
                                             getSupportFragmentManager().popBackStackImmediate();
                                             fragmentTransaction.replace(R.id.fragment_container, new FavoritesFragment());
-                                            appBarLayout.setExpanded(false, true);
                                             fragmentTransaction.addToBackStack(null).commit();
-                                            collapsingToolbarLayout.setTitle("Favorites");
+                                            toolbar.setTitle("Favorites");
                                         }
                                     }, DRAWER_DELAY);
                                     break;
@@ -235,10 +180,9 @@ public class MainActivity extends AppCompatActivity {
                                         public void run() {
                                             getSupportFragmentManager().popBackStackImmediate();
                                             fragmentTransaction.replace(R.id.fragment_container, new CommitteeFragment());
-                                            appBarLayout.setExpanded(false, true);
                                             fragmentTransaction.addToBackStack(null);
                                             fragmentTransaction.commit();
-                                            collapsingToolbarLayout.setTitle("Committee");
+                                            toolbar.setTitle("Committee");
                                         }
                                     }, DRAWER_DELAY);
                                     break;
@@ -248,10 +192,9 @@ public class MainActivity extends AppCompatActivity {
                                         public void run() {
                                             getSupportFragmentManager().popBackStackImmediate();
                                             fragmentTransaction.replace(R.id.fragment_container, new DevelopersFragment());
-                                            appBarLayout.setExpanded(false, true);
                                             fragmentTransaction.addToBackStack(null);
                                             fragmentTransaction.commit();
-                                            collapsingToolbarLayout.setTitle("Developers");
+                                            toolbar.setTitle("Developers");
                                         }
                                     }, DRAWER_DELAY);
                                     break;
@@ -261,46 +204,33 @@ public class MainActivity extends AppCompatActivity {
                                         public void run() {
                                             getSupportFragmentManager().popBackStackImmediate();
                                             fragmentTransaction.replace(R.id.fragment_container, new ContactUsFragment());
-                                            appBarLayout.setExpanded(false, true);
                                             fragmentTransaction.addToBackStack(null);
                                             fragmentTransaction.commit();
-                                            collapsingToolbarLayout.setTitle("Contact us");
+                                            toolbar.setTitle("Contact us");
                                         }
                                     }, DRAWER_DELAY);
                                     break;
-
-                                case R.id.share_app_menuItem:
+                                case R.id.achievement_menuItem:
                                     new Handler().postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
-                                            Intent intent = new Intent();
-                                            intent.setAction(Intent.ACTION_SEND);
-                                            intent.putExtra(Intent.EXTRA_TEXT, "Check out the official app for Spirit 17!\n\n" + getResources().getString(R.string.playstore_link));
-                                            intent.setType("text/plain");
-                                            startActivity(Intent.createChooser(intent, getResources().getString(R.string.share_message)));
+                                            getSupportFragmentManager().popBackStackImmediate();
+                                            fragmentTransaction.replace(R.id.fragment_container, new AchievementsFragment());
+                                            fragmentTransaction.addToBackStack(null);
+                                            fragmentTransaction.commit();
+                                            toolbar.setTitle(getString(R.string.achievements));
                                         }
                                     }, DRAWER_DELAY);
-                                    return true;
-                                case R.id.rate_app_menuItem:
-                                    new Handler().postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
-                                            intent.setData(Uri.parse(getResources().getString(R.string.playstore_link)));
-                                            startActivity(intent);
-                                        }
-                                    }, DRAWER_DELAY);
-                                    return true;
+                                    break;
                                 case R.id.about_menuItem:
                                     new Handler().postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
                                             getSupportFragmentManager().popBackStackImmediate();
                                             fragmentTransaction.replace(R.id.fragment_container, new AboutAppFragment());
-                                            appBarLayout.setExpanded(false, true);
                                             fragmentTransaction.addToBackStack(null);
                                             fragmentTransaction.commit();
-                                            collapsingToolbarLayout.setTitle(getResources().getString(R.string.aboutapp));
+                                            toolbar.setTitle(getResources().getString(R.string.aboutapp));
                                         }
                                     }, DRAWER_DELAY);
                             }
@@ -312,12 +242,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_activity_main,menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Uri uri=null;
         switch (item.getItemId()) {
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
                 return true;
+            case R.id.menuItem_rate_app:
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(getResources().getString(R.string.playstore_link)));
+                startActivity(intent);
+                break;
+            case R.id.menuItem_share_app:
+                Intent intent1 = new Intent();
+                intent1.setAction(Intent.ACTION_SEND);
+                intent1.putExtra(Intent.EXTRA_TEXT, "Check out the official app for Spirit 17!\n\n" + getResources().getString(R.string.playstore_link));
+                intent1.setType("text/plain");
+                startActivity(Intent.createChooser(intent1, getResources().getString(R.string.share_message)));
+                break;
             /*case R.id.follow_us:
                 return true;
             case R.id.menu_visit_website:
@@ -343,14 +291,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         if(drawerLayout.isDrawerOpen(GravityCompat.START))
             drawerLayout.closeDrawers();
         else {
             navigationView.getMenu().getItem(0).setChecked(true);
-            collapsingToolbarLayout.setTitle(getString(R.string.app_name));
-            appBarLayout.setExpanded(true, true);
+            toolbar.setTitle(getString(R.string.app_name));
 
             super.onBackPressed();
         }
