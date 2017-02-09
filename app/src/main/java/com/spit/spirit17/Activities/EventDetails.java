@@ -73,6 +73,7 @@ public class EventDetails extends AppCompatActivity{
 
         final AppCompatTextView textViews[] = {
                 (AppCompatTextView) findViewById(R.id.tv_event_venue_time),
+                (AppCompatTextView)findViewById(R.id.tv_event_participations),
                 (AppCompatTextView) findViewById(R.id.tv_event_registration),
                 (AppCompatTextView) findViewById(R.id.tv_event_prizes),
                 (AppCompatTextView) findViewById(R.id.tv_event_organizers)
@@ -94,7 +95,8 @@ public class EventDetails extends AppCompatActivity{
         else
             this.setTitle("Some event");
 
-        setVenueAndTime(getIntent().getStringExtra("venue"), getIntent().getStringExtra("time"));
+        setVenueAndTime(getIntent().getStringExtra("venue"));
+        setParticipants( getIntent().getStringExtra("time"));
         setRegistration(getIntent().getStringExtra("registration"));
         setPrizes(getIntent().getStringExtra("prizes"));
         setContacts(getIntent().getStringExtra("contact1name"), getIntent().getStringExtra("contact1no"), getIntent().getStringExtra("contact2name"), getIntent().getStringExtra("contact2no"));
@@ -180,6 +182,7 @@ public class EventDetails extends AppCompatActivity{
             slide.addTarget(R.id.registration_card);
             slide.addTarget(R.id.prizes_card);
             slide.addTarget(R.id.organizers_card);
+            slide.addTarget(R.id.no_of_parti_card);
             slide.setInterpolator(new LinearOutSlowInInterpolator());
             getWindow().setEnterTransition(slide);
             getWindow().setExitTransition(slide);
@@ -198,9 +201,9 @@ public class EventDetails extends AppCompatActivity{
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        mi_reminder = menu.findItem(R.id.action_set_reminder);
+        /*mi_reminder = menu.findItem(R.id.action_set_reminder);
         if(isReminderSet)
-            mi_reminder.setIcon(R.drawable.svg_alarm_on_white_48px);
+            mi_reminder.setIcon(R.drawable.svg_alarm_on_white_48px);*/
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -232,9 +235,9 @@ public class EventDetails extends AppCompatActivity{
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_set_reminder:
+            /*case R.id.action_set_reminder:
                 setReminder();
-                break;
+                break;*/
             case R.id.action_share:
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
@@ -257,10 +260,16 @@ public class EventDetails extends AppCompatActivity{
 
     }
 
-    private void setVenueAndTime(String venue, String time) {
+    private void setVenueAndTime(String venue) {
         AppCompatTextView venueTimeTextView = (AppCompatTextView) findViewById(R.id.venue_time_textView);
         assert venueTimeTextView != null;
-        venueTimeTextView.setText(venue + "\n" + time);
+        venueTimeTextView.setText(venue + "\n");
+    }
+
+    private void setParticipants(String string){
+        AppCompatTextView compatTextView =(AppCompatTextView)findViewById(R.id.participations_textview);
+        assert compatTextView!= null;
+        compatTextView.setText(string);
     }
 
     private void setRegistration(String registration) {

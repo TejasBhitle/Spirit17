@@ -33,7 +33,7 @@ public class CommitteeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_committee,container,false);
 
-        secretary = (LinearLayout) view.findViewById(R.id.secretary_email);
+        /*secretary = (LinearLayout) view.findViewById(R.id.secretary_email);
         cp = (LinearLayout) view.findViewById(R.id.cp_email);
         vcp = (LinearLayout) view.findViewById(R.id.vcp_email);
         exec = (LinearLayout) view.findViewById(R.id.exec_email);
@@ -106,7 +106,7 @@ public class CommitteeFragment extends Fragment {
         decor.setOnClickListener(emailListener);
         admin.setOnClickListener(emailListener);
         security.setOnClickListener(emailListener);
-
+*/
         return view;
     }
 

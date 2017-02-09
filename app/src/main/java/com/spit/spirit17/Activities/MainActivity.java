@@ -80,8 +80,8 @@ public class MainActivity extends AppCompatActivity {
         if(savedInstanceState == null){
             fm = getSupportFragmentManager();
             FragmentTransaction transaction = fm.beginTransaction();
-            MainFragment mainFragment = MainFragment.newInstance();
-            transaction.replace(R.id.fragment_container,mainFragment).commit();
+            EventsTabFragment fragment = EventsTabFragment.newInstance("Inter");
+            transaction.replace(R.id.fragment_container,fragment).commit();
         }
 
         setupDrawerLayout();
@@ -105,41 +105,18 @@ public class MainActivity extends AppCompatActivity {
                             fragmentTransaction.setCustomAnimations(R.anim.fade_in,R.anim.fade_out);
                             switch (item.getItemId()) {
                                 case R.id.main_menuItem:
+
                                     new Handler().postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
                                             boolean isFragmentInStack = fm.popBackStackImmediate(backStageName, 0);
-                                            if (!isFragmentInStack) {
-                                                MainFragment fragment = MainFragment.newInstance();
+                                            if(!isFragmentInStack){
+                                                EventsTabFragment fragment = EventsTabFragment.newInstance("Inter");
                                                 fragmentTransaction.replace(R.id.fragment_container, fragment);
                                                 backStageName = fragment.getClass().getName();
                                                 fragmentTransaction.addToBackStack(backStageName).commit();
                                             }
                                             toolbar.setTitle(getString(R.string.app_name));
-                                        }
-                                    }, DRAWER_DELAY);
-                                    break;
-                                case R.id.inter_menuItem:
-                                    new Handler().postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            getSupportFragmentManager().popBackStackImmediate();
-                                            EventsTabFragment fragment = EventsTabFragment.newInstance("Inter");
-                                            fragmentTransaction.replace(R.id.fragment_container, fragment);
-                                            fragmentTransaction.addToBackStack(null).commit();
-                                            toolbar.setTitle("Inter Events");
-                                        }
-                                    }, DRAWER_DELAY);
-                                    break;
-                                case R.id.intra_menuItem:
-                                    new Handler().postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            getSupportFragmentManager().popBackStackImmediate();
-                                            EventsTabFragment fragment = EventsTabFragment.newInstance("Intra");
-                                            fragmentTransaction.replace(R.id.fragment_container, fragment);
-                                            fragmentTransaction.addToBackStack(null).commit();
-                                            toolbar.setTitle("Intra Events");
                                         }
                                     }, DRAWER_DELAY);
                                     break;

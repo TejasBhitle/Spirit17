@@ -7,14 +7,6 @@
         <item
             android:title="@string/home"
             android:id="@+id/main_menuItem"
-            android:icon="@drawable/svg_home_white_24px"/>
-        <item
-            android:title="Inter Events"
-            android:id="@+id/inter_menuItem"
-            android:icon="@drawable/svg_flag_photo_white_36px"/>
-        <item
-            android:title="Intra Events"
-            android:id="@+id/intra_menuItem"
             android:icon="@drawable/svg_flag_photo_white_36px"/>
 
         <item

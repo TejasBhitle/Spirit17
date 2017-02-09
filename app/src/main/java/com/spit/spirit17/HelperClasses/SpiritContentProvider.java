@@ -52,20 +52,93 @@ public class SpiritContentProvider extends ContentProvider {
 
     //////////Data of each event//////////
     private final Event[] events = new Event[]{
-            new Event("Rink Football","Inter" ,"Outdoor", "Volleyball court", "7am to 9am\n5pm onwards", "\u20B9120 per team\nTeam of 4+1(rolling sub)", "Prizes worth \u20B910000!", "Ameya","9920666361", "Rishi","9967009530", "#EEE618"),
-            new Event("Table Tennis","Inter" ,"Indoor", "Gymkhana", "5pm onwards", "\u20B950 per person", "\u2022 1st Place: \u20B9300\n\u2022 2nd Place: \u20B9200", "Gagan Holani", "9405468028", "", "", "#29A4D5"),
-            new Event("Carrom","Inter" ,"Indoor", "Gymkhana", "9am to 1pm\n2pm to 5pm", "\u20B930 for Singles\n\u20B950 for a team of 2", "Team:\n\u2022 1st Place: \u20B250\n\u2022 2nd Place: \u20B9150\n\nIndividual:\n\u2022 1st Place: \u20B9200\n\u2022 2nd Place: \u20B9100", "Jeet Mehta", "9920896046", "", "", "#08C55A"),
+            new Event("Cricket ",
+                    "Inter",
+                    "Outdoor",
+                    "Rs 4000/-", "11+4",
+                    "regiration link",
+                    "15-16,19-24 Feb 2017\n Bhavans Ground",
+                    "Prajwal", "9405980778",
+                    "Hansraj", "8806828259",
+                    "#08C55A"),
 
-            /*Delete this Later*/
-            new Event("Test Event ","Intra","Indoor", "Gymkhana", "9am to 1pm\n2pm to 5pm", "\u20B930 for Singles\n\u20B950 for a team of 2", "Team:\n\u2022 1st Place: \u20B250\n\u2022 2nd Place: \u20B9150\n\nIndividual:\n\u2022 1st Place: \u20B9200\n\u2022 2nd Place: \u20B9100", "Jeet Mehta", "9920896046", "", "", "#08C55A")
-            /* new Event("Laser Tag", "An action-packed game where participants wear electronic vests and tag each other with phasors to score points.", "Mega", "Room 202 (ED Lab)", "9am to 1pm\n2pm to 6pm", "\u20B9100 per person (pre-registration)\n\u20B9120 per person (on the spot registration)", "\u2022 1st Place: \u20B91000\n\u2022 2nd Place: \u20B9500", "Gurpreet Kaur Saimy", "9029553799", "Madhura Gore", "7208450172", "#F6FF00"),
-    */};
+            new Event("Football ",
+                    "Inter",
+                    "Outdoor",
+                    "\u20B92000/- per team", "11+5",
+                    "https://docs.google.com/forms/d/e/1FAIpQLSfrIiYcld7Ac2G5QhbOqRCgRDb-4zkzdQBs2Pk-VVpkcGTyAA/viewform?c=0&w=1",
+                    "17,18,20th Feb'17\n Bhavans Ground",
+                    "Parth","8767326335", "Shubham","9619332150",
+                    "#08C55A"),
+
+            new Event("Volleyball ",
+                    "Inter",
+                    "Outdoor",
+                    "\u20B9900/- per team", "6+6",
+                    "https://docs.google.com/forms/d/e/1FAIpQLScIXkjdkwXhXdQP6hktwFIajAflEvNo85nxihoDhCjHvNp5bA/viewform?c=0&w=1",
+                    "8-19th Feb'17\n Volleyball court",
+                    "Atul","8793552829", "Abhishek","8275107343",
+                    "#08C55A"),
+
+            new Event("Throwball ",
+                    "Inter",
+                    "Outdoor",
+                    "\u20B9700/- per team", "7+2",
+                    "https://docs.google.com/forms/d/e/1FAIpQLScfAXfL5E15U7Gq2drqLCSzmgGTcvNQg2tumkgVqBDSRMJNjQ/viewform",
+                    "19th Feb'17\n Volleyball court",
+                    "Divita","998717333", "","",
+                    "#08C55A"),
+
+            new Event("Basketball ",
+                    "Inter",
+                    "Outdoor",
+                    "\u20B9900/- per team", "5+7",
+                    "https://docs.google.com/forms/d/e/1FAIpQLSf925aDR9o3WZWmBFezBeT_dnLXlsAMbjL32IgfM7EKVE62Dg/viewform",
+                    "16th-18th Feb'17\n Basketball court",
+                    "Shubham","9833351724", "","",
+                    "#08C55A"),
+
+            new Event("Chess ",
+                    "Inter",
+                    "Indoor",
+                    "\u20B980/- per player", "1",
+                    "https://docs.google.com/forms/d/e/1FAIpQLSfjV-G7OcFG6aToBK-AFP5T3586XCEEm0ybIzAfMZbieN1MPg/viewform",
+                    "15th Feb'17\n Gymkhana",
+                    "Amey","9930088105",
+                    "","",
+                    "#08C55A"),
+
+            new Event("Carrom ",
+                    "Inter",
+                    "Indoor",
+                    "\u20B950/-Singles\n100/- Doubles", "1 or 2",
+                    "https://docs.google.com/forms/d/e/1FAIpQLSfLDM3kLh5Bf3i7C39p7blKw6YVY0-QvvVixbWoNQOUJuB-Sw/viewform",
+                    "19th-20th Feb'17\n Gymkhana",
+                    "Jeet","9920896046",
+                    "Aashish","9619641945",
+                    "#08C55A"),
+
+            new Event("Table Tennis",
+                    "Inter",
+                    "Indoor",
+                    "\u20B950/- Singles\n100/- Doubles", "1 or 2",
+                    "https://docs.google.com/forms/d/e/1FAIpQLSewMC7ScnVPvU55gzlc2l03WuHkLfKN-RaGWs5ftFBw2KQCtw/viewform",
+                    "19th-20th Feb'17\n Gymkhana",
+                    "Gagan","9405468028",
+                    "Nikhil","9158996129",
+                    "#08C55A")
+
+    };
 
     private static final int[] images = {
+            R.drawable.cricket,
+            R.drawable.football,
+            R.drawable.volleyball,
+            R.drawable.throwball,
             R.drawable.viewpager_1,
-            R.drawable.viewpager_1,
-            R.drawable.viewpager_1,
-            R.drawable.viewpager_1
+            R.drawable.chess,
+            R.drawable.carrom,
+            R.drawable.table_tennis
     };
 
     SQLiteDatabase db;

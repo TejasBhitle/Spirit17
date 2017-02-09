@@ -55,6 +55,40 @@
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
+            <android.support.v7.widget.CardView
+                android:id="@+id/no_of_parti_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Description_Card">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="4dp">
+
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/tv_event_participations"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/participations"
+                        android:textColor="@color/colorAccent"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/participations_textview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:paddingEnd="8dp"
+                        android:paddingStart="8dp" />
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
             <!--REGISTRATION-->
             <android.support.v7.widget.CardView
                 android:id="@+id/registration_card"
@@ -84,6 +118,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
                         android:paddingEnd="8dp"
+                        android:autoLink="all"
+                        android:textIsSelectable="true"
                         android:paddingStart="8dp" />
 
                 </LinearLayout>
