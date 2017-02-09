@@ -57,7 +57,7 @@
 
     <string name="description">Description</string>
     <string name="venue_time">Entry Fees</string>
-    <string name="registration">Registration</string>
+    <string name="registration">Registration Link</string>
     <string name="prizes">Dates and Venue</string>
     <string name="organizers">Organizers</string>
 

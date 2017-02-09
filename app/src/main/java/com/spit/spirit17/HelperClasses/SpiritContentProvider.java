@@ -56,7 +56,7 @@ public class SpiritContentProvider extends ContentProvider {
                     "Inter",
                     "Outdoor",
                     "Rs 4000/-", "11+4",
-                    "regiration link",
+                    "Yet To be added",
                     "15-16,19-24 Feb 2017\n Bhavans Ground",
                     "Prajwal", "9405980778",
                     "Hansraj", "8806828259",
